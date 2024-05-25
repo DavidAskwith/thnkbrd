@@ -14,7 +14,6 @@ points:
       columns:
         inner.key:
         pointer.key:
-          stagger: -2.5
         middle.key:
           stagger: 11
         ring.key:
@@ -22,7 +21,6 @@ points:
         pinky.key:
           stagger: -9
         outer.key:
-          stagger: 4
       rows:
         bottom:
         center:
@@ -41,8 +39,6 @@ points:
         right.key:
           stagger: 5
           height: 1.5kx
-      rows:
-        one:
       rotate: 3 #was 5 pre spread
 outlines:
   keys:
@@ -51,35 +47,60 @@ outlines:
       size: [kx-0.5,ky-0.5]
   board:
     - what: polygon
-      fillet: 5
+      fillet: 7
       expand: 3
+      joints: 0
       points:
-        - ref: thumb_left_one 
+        - ref: thumb_left
           shift: [-0.5px,0.5py]
-        - ref: thumb_left_one 
+        - ref: thumb_left
           shift: [-0.5px,-0.75ky -5]
-        - ref: thumb_right_one 
+        - ref: thumb_right
           shift: [0.5px,-0.75ky -5]
-        - ref: thumb_right_one
-          shift: [0.5px, 0.5py]
-        - ref: main_pinky_bottom
-          shift: [0.5px,-0.5py]
+        - ref: thumb_right
+          shift: [0.5px, 0.25py]
         - ref: main_outer_bottom
           shift: [0.5px,-0.5py]
         - ref: main_outer_top
-          shift: [0.5px,0.5py]
+          shift: [.75px,0.5py]
         - ref: main_middle_top
-          shift: [0.5px,0.5py]
+          shift: [.75px,0.5py]
         - ref: main_middle_top
-          shift: [-0.5px,0.5py]
+          shift: [-1px,0.5py]
         - ref: main_inner_top
-          shift: [-28 - 0.5kx,0.5py]
-
-    - what: outline
-      name: keys
-      operation: stack
+          shift: [-22- 0.5kx,0.5py]
   combo:
     - name: board
     - operation: subtract
       name: keys
- 
+pcb:
+  pcbboard:
+    outlines:
+      main:
+        outline: board
+    footprints:
+      choc_hotswap:
+        what: choc
+        where: true
+        params:
+          keycaps: true
+          reverse: true
+          hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      diode:
+          what: diode
+          where: true
+          params:
+            from: "{{colrow}}"
+            to: "{{row_net}}"
+          adjust:
+            shift: [0, -5]
+      promicro:
+        what: promicro
+        params:
+          orientation: "up"
+        where:
+          ref: main_inner_top
+          shift: [0,0]
+          rotate: -90
