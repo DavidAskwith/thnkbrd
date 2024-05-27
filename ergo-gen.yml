@@ -68,12 +68,12 @@ outlines:
         - ref: main_middle_top
           shift: [-1px,0.5py]
         - ref: main_inner_top
-          shift: [-22- 0.5kx,0.5py]
+          shift: [-1.25px,1py]
   combo:
     - name: board
     - operation: subtract
       name: keys
-pcb:
+pcbs:
   pcbboard:
     outlines:
       main:
@@ -86,6 +86,14 @@ pcb:
           keycaps: true
           reverse: true
           hotswap: true
+          from: "{{column_net}}"
+          to: "{{colrow}}"
+      choc_soldier:
+        what: choc
+        where: true
+        params:
+          keycaps: true
+          reverse: true
           from: "{{column_net}}"
           to: "{{colrow}}"
       diode:
@@ -101,6 +109,6 @@ pcb:
         params:
           orientation: "up"
         where:
-          ref: main_inner_top
-          shift: [0,0]
+          ref: main_inner_center
+          shift: [-21,0]
           rotate: -90
