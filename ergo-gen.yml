@@ -126,17 +126,17 @@ pcbs:
           B7: matrix_ring_bottom
           D5: matrix_middle_bottom
           C7: matrix_pointer_bottom
-          F1: matrix_innner_bottom
+          F1: matrix_inner_bottom
           F0: matrix_outer_middle
           B6: matrix_ring_middle
           B2: matrix_middle_middle
           B3: matrix_pointer_middle
-          B1: matrix_innner_middle
+          B1: matrix_inner_middle
           F7: matrix_outer_top
           F6: matrix_ring_top
           F5: matrix_middle_top
           F4: matrix_pointer_top
-          B0: matrix_innner_top
+          B0: matrix_inner_top
         where:
           ref: matrix_inner_center
           shift: [-21,0]
