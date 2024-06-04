@@ -7,7 +7,7 @@ units:
   py: ky + 5
 points:
   zones:
-    main:
+    matrix:
       key:
         padding: 1ky
         spread: 1kx
@@ -15,11 +15,11 @@ points:
         inner.key:
         pointer.key:
         middle.key:
-          stagger: 11
+            stagger: 11
         ring.key:
-          stagger: -5
+            stagger: -5
         pinky.key:
-          stagger: -9
+            stagger: -9
         outer.key:
       rows:
         bottom:
@@ -27,7 +27,7 @@ points:
         top:
     thumb:
       anchor:
-        ref: main_inner_bottom
+        ref: matrix_inner_bottom
         shift: [-28, -25]
       columns:
         left.key:
@@ -59,15 +59,15 @@ outlines:
           shift: [0.5px,-0.75ky -5]
         - ref: thumb_right
           shift: [0.5px, 0.25py]
-        - ref: main_outer_bottom
+        - ref: matrix_outer_bottom
           shift: [0.5px,-0.5py]
-        - ref: main_outer_top
+        - ref: matrix_outer_top
           shift: [.75px,0.5py]
-        - ref: main_middle_top
+        - ref: matrix_middle_top
           shift: [.75px,0.5py]
-        - ref: main_middle_top
+        - ref: matrix_middle_top
           shift: [-1px,0.5py]
-        - ref: main_inner_top
+        - ref: matrix_inner_top
           shift: [-1.25px,1py]
   combo:
     - name: board
@@ -76,7 +76,7 @@ outlines:
 pcbs:
   pcbboard:
     outlines:
-      main:
+      matrix:
         outline: board
     footprints:
       choc_hotswap:
@@ -86,29 +86,58 @@ pcbs:
           keycaps: true
           reverse: true
           hotswap: true
-          from: "{{column_net}}"
-          to: "{{colrow}}"
-      choc_soldier:
-        what: choc
-        where: true
-        params:
-          keycaps: true
-          reverse: true
-          from: "{{column_net}}"
-          to: "{{colrow}}"
-      diode:
-          what: diode
-          where: true
-          params:
-            from: "{{colrow}}"
-            to: "{{row_net}}"
-          adjust:
-            shift: [0, -5]
-      promicro:
-        what: promicro
-        params:
-          orientation: "up"
+          from: GND
+          to: "{{name}}"
+      # choc_soldier:
+      #   what: choc
+      #   where: true
+      #   params:
+      #     keycaps: true
+      #     reverse: true
+      #     from: GND
+      #     to: "{{column_net}}"
+      trrs:
+        what: trrs
         where:
-          ref: main_inner_center
+          ref: matrix_inner_bottom
+          rotate: 90
+          shift: [-35, -5]
+        params:
+          A: GND
+          B: GND
+          C: C6
+          D: VCC
+          reverse: true
+          symmetric: true
+      promicro:
+        what: elite
+        params:
+          orientation: "down"
+          # D3:
+          # D1:
+          # D2:
+          # D0:
+          # D4:
+          # C6:
+          D7: thumb_left
+          E6: thumb_middle
+          B4: thumb_right
+          B5: matrix_outer_bottom
+          B7: matrix_ring_bottom
+          D5: matrix_middle_bottom
+          C7: matrix_pointer_bottom
+          F1: matrix_innner_bottom
+          F0: matrix_outer_middle
+          B6: matrix_ring_middle
+          B2: matrix_middle_middle
+          B3: matrix_pointer_middle
+          B1: matrix_innner_middle
+          F7: matrix_outer_top
+          F6: matrix_ring_top
+          F5: matrix_middle_top
+          F4: matrix_pointer_top
+          B0: matrix_innner_top
+        where:
+          ref: matrix_inner_center
           shift: [-21,0]
           rotate: -90
