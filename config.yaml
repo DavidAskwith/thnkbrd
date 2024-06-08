@@ -60,7 +60,7 @@ outlines:
         - ref: thumb_right
           shift: [0.5px, 0.25py]
         - ref: matrix_outer_bottom
-          shift: [0.5px,-0.5py]
+          shift: [0.55px,-0.55py]
         - ref: matrix_outer_top
           shift: [.75px,0.5py]
         - ref: matrix_middle_top
@@ -88,14 +88,39 @@ pcbs:
           hotswap: true
           from: GND
           to: "{{name}}"
-      # choc_soldier:
-      #   what: choc
-      #   where: true
-      #   params:
-      #     keycaps: true
-      #     reverse: true
-      #     from: GND
-      #     to: "{{column_net}}"
+      choc_soldier:
+        what: choc
+        where: true
+        params:
+          keycaps: true
+          reverse: true
+          from: GND
+          to: "{{name}}"
+      mountinghole0:
+        what: mountinghole
+        where:
+          ref: thumb_left
+          shift: [-10, -16]
+      mountinghole1:
+        what: mountinghole
+        where:
+          ref: thumb_right
+          shift: [10, -16]
+      mountinghole2:
+        what: mountinghole
+        where:
+          ref: matrix_outer_bottom
+          shift: [12, -11]
+      mountinghole3:
+        what: mountinghole
+        where:
+          ref: matrix_outer_top
+          shift: [16, 10]
+      mountinghole4:
+        what: mountinghole
+        where:
+          ref: matrix_inner_top
+          shift: [-28, 22]
       trrs:
         what: trrs
         where:
@@ -105,34 +130,31 @@ pcbs:
         params:
           A: GND
           B: GND
-          C: C6
+          C: D1
           D: VCC
           reverse: true
           symmetric: true
       promicro:
-        what: elite
+        what: pi_pico_left
         params:
           orientation: "down"
-          # D3:
-          # D1:
-          # D2:
-          # D0:
-          # D4:
-          # C6:
-          D7: thumb_left
-          E6: thumb_middle
-          B4: thumb_right
-          B5: matrix_outer_bottom
-          B7: matrix_ring_bottom
-          D5: matrix_middle_bottom
-          C7: matrix_pointer_bottom
-          F1: matrix_inner_bottom
-          F0: matrix_outer_middle
-          B6: matrix_ring_middle
-          B2: matrix_middle_middle
-          B3: matrix_pointer_middle
-          B1: matrix_inner_middle
-          F7: matrix_outer_top
+          D0: thumb_left
+          D4: thumb_middle            
+          C6: thumb_right             
+          D7: matrix_outer_bottom     
+          E6: matrix_pinky_bottom
+          B4: matrix_ring_bottom     
+          B5: matrix_middle_bottom   
+          B7: matrix_pointer_bottom  
+          D5: matrix_inner_bottom    
+          C7: matrix_outer_center    
+          F1: matrix_pinky_center
+          F0: matrix_ring_center
+          B6: matrix_middle_center
+          B2: matrix_pointer_center
+          B3: matrix_inner_center
+          B1: matrix_outer_top
+          F7: matrix_pinky_top
           F6: matrix_ring_top
           F5: matrix_middle_top
           F4: matrix_pointer_top
