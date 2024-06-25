@@ -28,47 +28,32 @@ points:
     thumb:
       anchor:
         ref: matrix_inner_bottom
-        shift: [-28, -25]
+        shift: [-28, -20]
       columns:
         left.key:
           stagger: -15
-          height: 1.5kx
         middle.key:
           stagger: 5
-          height: 1.5kx
         right.key:
           stagger: 5
-          height: 1.5kx
-      rotate: 3 #was 5 pre spread
+      rotate: 5
 outlines:
   keys:
     - what: rectangle
       where: true
       size: [kx-0.5,ky-0.5]
   board:
-    - what: polygon
-      fillet: 7
-      expand: 3
-      joints: 0
-      points:
-        - ref: thumb_left
-          shift: [-0.5px,0.5py]
-        - ref: thumb_left
-          shift: [-0.5px,-0.75ky -5]
-        - ref: thumb_right
-          shift: [0.5px,-0.75ky -5]
-        - ref: thumb_right
-          shift: [0.5px, 0.25py]
-        - ref: matrix_outer_bottom
-          shift: [0.55px,-0.55py]
-        - ref: matrix_outer_top
-          shift: [.75px,0.5py]
-        - ref: matrix_middle_top
-          shift: [.75px,0.5py]
-        - ref: matrix_middle_top
-          shift: [-1px,0.5py]
-        - ref: matrix_inner_top
-          shift: [-1.25px,1py]
+    - what: outline
+      name: keys
+      fillet: 1
+      expand: 6
+    - what: rectangle
+      size: [50, 55]
+      corner: 5
+      where:
+        ref: matrix_inner_bottom
+        shift: [-13, 0]
+        rotate: 5
   combo:
     - name: board
     - operation: subtract
@@ -96,70 +81,41 @@ pcbs:
           reverse: true
           from: GND
           to: "{{name}}"
-      mountinghole0:
-        what: mountinghole
-        where:
-          ref: thumb_left
-          shift: [-10, -16]
-      mountinghole1:
-        what: mountinghole
-        where:
-          ref: thumb_right
-          shift: [10, -16]
-      mountinghole2:
-        what: mountinghole
-        where:
-          ref: matrix_outer_bottom
-          shift: [12, -11]
-      mountinghole3:
-        what: mountinghole
-        where:
-          ref: matrix_outer_top
-          shift: [16, 10]
-      mountinghole4:
-        what: mountinghole
-        where:
-          ref: matrix_inner_top
-          shift: [-28, 22]
-      trrs:
-        what: trrs
+      jstph: 
+        what: jstph
+        params:
+          pos: VCC
+          neg: GND
+        where: 
+          ref: matrix_inner_bottom
+          shift: [-30, -15]
+          rotate: 95
+      promicro:
+        what: promicro
+        params:
+          # RAW:
+          # GND:
+          # RST:
+          # VCC:
+          P21: thumb_left
+          P20: thumb_middle
+          P19: thumb_right
+          P18: matrix_outer_bottom
+          P15: matrix_ring_bottom
+          P14: matrix_middle_bottom
+          P16: matrix_pointer_bottom
+          P10: matrix_inner_bottom
+          P1:  matrix_outer_middle
+          P0:  matrix_ring_middle
+          P2:  matrix_middle_middle
+          P3:  matrix_pointer_middle
+          P4:  matrix_inner_middle
+          P5:  matrix_outer_top
+          P6:  matrix_ring_top
+          P7:  matrix_middle_top
+          P9:  matrix_inner_top
+          P8:  matrix_pointer_top
         where:
           ref: matrix_inner_bottom
-          rotate: 90
-          shift: [-35, -5]
-        params:
-          A: GND
-          B: GND
-          C: D1
-          D: VCC
-          reverse: true
-          symmetric: true
-      promicro:
-        what: pi_pico_left
-        params:
-          orientation: "down"
-          D0: thumb_left
-          D4: thumb_middle            
-          C6: thumb_right             
-          D7: matrix_outer_bottom     
-          E6: matrix_pinky_bottom
-          B4: matrix_ring_bottom     
-          B5: matrix_middle_bottom   
-          B7: matrix_pointer_bottom  
-          D5: matrix_inner_bottom    
-          C7: matrix_outer_center    
-          F1: matrix_pinky_center
-          F0: matrix_ring_center
-          B6: matrix_middle_center
-          B2: matrix_pointer_center
-          B3: matrix_inner_center
-          B1: matrix_outer_top
-          F7: matrix_pinky_top
-          F6: matrix_ring_top
-          F5: matrix_middle_top
-          F4: matrix_pointer_top
-          B0: matrix_inner_top
-        where:
-          ref: matrix_inner_center
-          shift: [-21,0]
-          rotate: -90
+          shift: [-24,5]
+          rotate: -85
