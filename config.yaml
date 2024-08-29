@@ -38,6 +38,7 @@ points:
           stagger: 5
       rotate: 5
 outlines:
+  # comment for prod
   keys:
     - what: rectangle
       where: true
@@ -46,14 +47,15 @@ outlines:
     - what: outline
       name: keys
       fillet: 1
-      expand: 6
+      expand: 7
     - what: rectangle
       size: [50, 55]
-      corner: 5
+      corner: 6
       where:
         ref: matrix_inner_bottom
-        shift: [-13, 0]
+        shift: [-14, 1.5]
         rotate: 5
+  # comment for prod
   combo:
     - name: board
     - operation: subtract
@@ -71,51 +73,96 @@ pcbs:
           keycaps: true
           reverse: true
           hotswap: true
-          from: GND
-          to: "{{name}}"
-      choc_soldier:
-        what: choc
-        where: true
+          from: "{{name}}"
+          to: GND
+      trrs: 
+        what: trrs
         params:
-          keycaps: true
           reverse: true
-          from: GND
-          to: "{{name}}"
-      jstph: 
-        what: jstph
-        params:
-          pos: VCC
-          neg: GND
+          A: B5 # Bad pin placement should be at end
+          B: B7 # Bad pin placement should be at end
+          C: GND
+          D: VCC
         where: 
           ref: matrix_inner_bottom
-          shift: [-30, -15]
+          shift: [-33, -18]
           rotate: 95
-      promicro:
-        what: promicro
-        params:
-          # RAW:
-          # GND:
-          # RST:
-          # VCC:
-          P21: thumb_left
-          P20: thumb_middle
-          P19: thumb_right
-          P18: matrix_outer_bottom
-          P15: matrix_ring_bottom
-          P14: matrix_middle_bottom
-          P16: matrix_pointer_bottom
-          P10: matrix_inner_bottom
-          P1:  matrix_outer_middle
-          P0:  matrix_ring_middle
-          P2:  matrix_middle_middle
-          P3:  matrix_pointer_middle
-          P4:  matrix_inner_middle
-          P5:  matrix_outer_top
-          P6:  matrix_ring_top
-          P7:  matrix_middle_top
-          P9:  matrix_inner_top
-          P8:  matrix_pointer_top
+      bottom_left_mount:
+        what: mountinghole
+        where:
+          ref: thumb_left
+          shift: [-11, -11]
+      bottom_middle_mount:
+        what: mountinghole
+        where:
+          ref: matrix_ring_bottom
+          shift: [-11, -11]
+      bottom_middle_right_mount:
+        what: mountinghole
+        where:
+          ref: thumb_right
+          shift: [11, -11]
+      bottom_right_mount:
+        what: mountinghole
+        where:
+          ref: matrix_outer_bottom
+          shift: [11, -11]
+      top_right_mount:
+        what: mountinghole
+        where:
+          ref: matrix_outer_top
+          shift: [11, 11]
+      top_middle_moount:
+        what: mountinghole
+        where:
+          ref: matrix_middle_top
+          shift: [0, 12]
+      top_left_mount:
+        what: mountinghole
+        where:
+          ref: matrix_inner_top
+          shift: [-11, 11]
+      between_thumb_pcb_mount:
+        what: mountinghole
         where:
           ref: matrix_inner_bottom
-          shift: [-24,5]
+          shift: [-3, -14]
+      left_center_mount:
+        what: mountinghole
+        where:
+          ref: matrix_inner_center
+          shift: [-37, 6]
+      rp2024_elite:
+        what: elite
+        params:
+          # GND:
+          # VCC:used for trrs
+          # ST: 
+          D3: thumb_right
+          D2: thumb_middle 
+          D1: thumb_left
+          D0: matrix_outer_bottom
+          D4: matrix_pinky_bottom
+          C6: matrix_ring_bottom
+          D7: matrix_middle_bottom
+          E6: matrix_pointer_bottom
+          B4: matrix_inner_bottom
+          # B5: used for trrs
+          # B7: used for trrs 
+          D5: matrix_outer_center
+          C7: matrix_pinky_center
+          F1: matrix_ring_center
+          F0: matrix_middle_center
+          B6: matrix_pointer_center
+          B2: matrix_inner_center
+          B3: matrix_outer_top
+          B1: matrix_pinky_top 
+          F7: matrix_ring_top
+          F6: matrix_middle_top
+          F5: matrix_pointer_top
+          F4: matrix_inner_top
+          # B0: not used
+        where:
+          ref: matrix_inner_bottom
+          shift: [-24,6]
           rotate: -85
