@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T,                                                                KC_Y, KC_U, KC_I, KC_O, KC_P, KC_DELETE,
     MT(MOD_LGUI, KC_ESCAPE),MT(MOD_LSFT, KC_A),LT(6,KC_S), LT(4,KC_D), LT(2,KC_F), MT(MOD_LCTL, KC_G),   MT(MOD_RCTL, KC_H),LT(1,KC_J),LT(3,KC_K),LT(5,KC_L),MT(MOD_RSFT, KC_SCLN),KC_QUOTE,
     TG(7), KC_Z, KC_X, KC_C, KC_V, KC_B,                                                                 KC_N, KC_M, KC_COMMA, KC_DOT, KC_SLASH, TG(7),
-    TO(DANCE_0),  MT(MOD_LGUI, KC_ENTER), KC_BSPC,                                                       LGUI(KC_MINUS), KC_SPACE, TD(DANCE_1)
+    TD(DANCE_0),  MT(MOD_LGUI, KC_ENTER), KC_BSPC,                                                       LGUI(KC_MINUS), KC_SPACE, TD(DANCE_1)
   ),
 // ╭───────┬───────┬───────┬───────┬───────┬───────╮   ╭───────┬───────┬───────┬───────┬───────┬───────╮
 // │  ---  │  ---  │ST_M0  │   +   │   *   │  ---  │   │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │
