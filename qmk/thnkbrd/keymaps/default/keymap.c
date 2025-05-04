@@ -6,10 +6,13 @@ enum tap_dance_codes {
 };
 
 enum custom_keycodes {
-  ST_MACRO_0,
+  ST_MACRO_0 = SAFE_RANGE,
   ST_MACRO_1,
   ST_MACRO_2,
   ST_MACRO_3,
+  NEXT_DIFF,
+  PREV_DIFF,
+  REV_CHANGE,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -20,7 +23,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ├───────┼───────┼───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┼───────┼───────┤
 // │ TG(7) │   Z   │   X   │   C   │   V   │   B   │   │   N   │   M   │   ,   │   .   │   /   │ TG(7) │
 // ╰───────┴───────┴───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┴───────┴───────╯
-//                         │TO(D0)│Enter/GUI│ Bkspc│   │TD(D1) │ GUI(-)│ Space │
+//                         │TO(D0)│Enter/GUI│ Bkspc│   │TD(D1) │ Space │ GUI(-)|
 //                         ╰───────┴───────┴───────╯   ╰───────┴───────┴───────╯
   [0] = LAYOUT(
     KC_TAB, KC_Q, KC_W, KC_E, KC_R, KC_T,                                                                KC_Y, KC_U, KC_I, KC_O, KC_P, KC_DELETE,
@@ -29,7 +32,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TD(DANCE_0),  MT(MOD_LGUI, KC_ENTER), KC_BSPC,                                                       LGUI(KC_MINUS), KC_SPACE, TD(DANCE_1)
   ),
 // ╭───────┬───────┬───────┬───────┬───────┬───────╮   ╭───────┬───────┬───────┬───────┬───────┬───────╮
-// │  ---  │  ---  │ST_M0  │   +   │   *   │  ---  │   │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │
+// │  ---  │  ---  │   =>  │   +   │   *   │   ^   │   │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┼───────┼───────┤
 // │  ---  │   -   │   <   │   {   │   (   │   [   │   │  ---  │  ---  │   C   │  ---  │  ---  │  ---  │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┼───────┼───────┤
@@ -38,24 +41,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //                         │  ---  │  ---  │  ---  │   │  ---  │  ---  │  ---  │
 //                         ╰───────┴───────┴───────╯   ╰───────┴───────┴───────╯
   [1] = LAYOUT(
-    KC_TRNS, KC_TRNS, ST_MACRO_0, KC_PLUS, KC_ASTR, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, ST_MACRO_0, KC_PLUS, KC_ASTR, KC_CIRC,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_MINUS, KC_LABK, KC_LCBR, KC_LPRN, KC_LBRC,    KC_TRNS, KC_TRNS, KC_C, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_RABK, KC_RCBR, KC_RPRN, KC_RBRC,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS,                                KC_TRNS, KC_TRNS, KC_TRNS
   ),
 // ╭───────┬───────┬───────┬───────┬───────┬───────╮   ╭───────┬───────┬───────┬───────┬───────┬───────╮
-// │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │   │   ^   │   ~   │   %   │   #   │   \   │  ---  │
+// │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │   │   #   │   ~   │   %   │  ---  │   \   │  ---  │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┼───────┼───────┤
 // │  ---  │  ---  │  ---  │ LCTRL │  ---  │  ---  │   │   !   │   =   │   &   │   |   │   `   │  ---  │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┼───────┼───────┤
-// │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │   │   @   │   $   │   _   │  ---  │  ---  │  ---  │
+// │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │   │   @   │   $   │   _   │   ->  │  ---  │  ---  │
 // ╰───────┴───────┴───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┴───────┴───────╯
 //                         │  ---  │  ---  │  ---  │   │  ---  │  ---  │  ---  │
 //                         ╰───────┴───────┴───────╯   ╰───────┴───────┴───────╯
   [2] = LAYOUT(
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,         KC_CIRC, KC_TILD, KC_PERC, KC_HASH, KC_BSLS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,         KC_HASH, KC_TILD, KC_PERC, KC_TRNS, KC_BSLS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_LEFT_CTRL, KC_TRNS, KC_TRNS,    KC_EXLM, KC_EQUAL, KC_AMPR, KC_PIPE, KC_GRAVE, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,         KC_AT, KC_DLR, KC_UNDS, KC_TRNS, KC_TRNS, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,         KC_AT, KC_DLR, KC_UNDS, ST_MACRO_1, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS,                                    KC_TRNS, KC_TRNS, KC_TRNS
   ),
 // ╭───────┬───────┬───────┬───────┬───────┬───────╮   ╭───────┬───────┬───────┬───────┬───────┬───────╮
@@ -65,13 +68,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ├───────┼───────┼───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┼───────┼───────┤
 // │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │   │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │
 // ╰───────┴───────┴───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┴───────┴───────╯
-//                         │  ---  │  ---  │  ---  │   │  RSFT │  ---  │  ---  │
+//                         │  ---  │  ---  │  ---  │   │  ---  │  RSFT  │  ---  │
 //                         ╰───────┴───────┴───────╯   ╰───────┴───────┴───────╯
   [3] = LAYOUT(
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_1, KC_2, KC_3, KC_4, KC_5,                 KC_TRNS, KC_RIGHT_GUI, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS,                             KC_RIGHT_SHIFT, KC_TRNS, KC_TRNS
+    KC_TRNS, KC_TRNS, KC_TRNS,                             KC_TRNS, KC_RIGHT_SHIFT, KC_TRNS
   ),
 // ╭───────┬───────┬───────┬───────┬───────┬───────╮   ╭───────┬───────┬───────┬───────┬───────┬───────╮
 // │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │   │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │
@@ -80,13 +83,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ├───────┼───────┼───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┼───────┼───────┤
 // │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │   │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │
 // ╰───────┴───────┴───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┴───────┴───────╯
-//                         │  ---  │  ---  │ LSFT  │   │  ---  │  ---  │  ---  │
+//                         │  ---  │ LSFT  │  ---  │   |  ---  │  ---  │  ---  │
 //                         ╰───────┴───────┴───────╯   ╰───────┴───────┴───────╯
   [4] = LAYOUT(
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LEFT_GUI, KC_TRNS,    KC_6, KC_7, KC_8, KC_9, KC_0, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LEFT_ALT, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS,  KC_TRNS, KC_LEFT_SHIFT,                            KC_TRNS, KC_TRNS, KC_TRNS
+    KC_TRNS, KC_LEFT_SHIFT, KC_TRNS,                             KC_TRNS, KC_TRNS, KC_TRNS
   ),
 
 // UTIL_L
@@ -99,49 +102,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // UTIL_R
 // ╭───────┬───────┬───────┬───────┬───────┬───────╮   ╭───────┬───────┬───────┬───────┬───────┬───────╮
-// │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │   │ST_M2  │ HOME  │C+I    │C+O    │ST_M3  │  ---  │
+// │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │   | "+y   │ HOME  │  ---  │  ---  │  "+p  │  ---  │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┼───────┼───────┤
 // │  ---  │  ---  │  ---  │ LCTRL │  ---  │  ---  │   │  ---  │ LEFT  │ DOWN  │  UP   │ RIGHT │  ---  │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┼───────┼───────┤
-// │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │   │  ---  │  END  │  ---  │  ---  │  ---  │  ---  │
+// │ TO(0) │  ---  │  ---  │  ---  │  ---  │  ---  │   │  ---  │  END  │  ---  │  ---  │  ---  │ TO(0) │
 // ╰───────┴───────┴───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┴───────┴───────╯
-//                         │  ---  │  ---  │ TO(0) │   │  ---  │  ---  │  ---  │
+//                         │ TO(0) │  ---  │  ---  │   │  ---  │  ---  │ TO(0) │
 //                         ╰───────┴───────┴───────╯   ╰───────┴───────┴───────╯
   [6] = LAYOUT(
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                 ST_MACRO_2, KC_HOME, LCTL(KC_I), LCTL(KC_O), ST_MACRO_3, KC_TRNS,
+    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                 ST_MACRO_2, KC_HOME, KC_TRNS, KC_TRNS, ST_MACRO_3, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_TRNS, KC_LEFT_CTRL, KC_TRNS, KC_TRNS,            KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                 KC_TRNS, KC_END, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS,                                            KC_TRNS, KC_TRNS, TO(0)
+    TO(0), KC_TRNS, LCTL(LALT(KC_R)), PREV_DIFF, NEXT_DIFF, KC_TRNS,      KC_TRNS, KC_END, KC_TRNS, KC_TRNS, KC_TRNS, TO(0),
+    TO(0), KC_TRNS, KC_TRNS,                                              KC_TRNS, KC_TRNS, TO(0)
   ),
 // ╭───────┬───────┬───────┬───────┬───────┬───────╮   ╭───────┬───────┬───────┬───────┬───────┬───────╮
 // │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │   │  ---  │  ---  │ SCRL  │  ---  │  ---  │  ---  │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┼───────┼───────┤
 // │  ---  │  ---  │  MB2  │  MB3  │  MB1  │  ---  │   │  ---  │ MB1   │ MB3   │ MB2   │  ---  │  ---  │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┼───────┼───────┤
-// │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │   │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │
+// │ TO(0) │  ---  │  ---  │  ---  │  ---  │  ---  │   │  ---  │  ---  │  ---  │  ---  │  ---  │ TO(0) │
 // ╰───────┴───────┴───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┴───────┴───────╯
-//                         │  ---  │  ---  │ LSFT  │   │  ---  │  ---  │  ---  │
+//                         │ TO(0) │  ---  │  ---  │   │  ---  │  ---  │ TO(0) │
 //                         ╰───────┴───────┴───────╯   ╰───────┴───────┴───────╯
   [7] = LAYOUT(
     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,           KC_TRNS, KC_TRNS, KC_SCRL, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_TRNS, KC_MS_BTN2, KC_MS_BTN3, KC_MS_BTN1, KC_TRNS,  KC_TRNS, KC_MS_BTN1, KC_MS_BTN3, KC_MS_BTN2, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,           KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS,                                      KC_TRNS, KC_TRNS, KC_TRNS
+    TO(0), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,           KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, TO(0),
+    TO(0), KC_TRNS, KC_TRNS,                                        KC_TRNS, KC_TRNS, TO(0)
   ),
 // ╭───────┬───────┬───────┬───────┬───────┬───────╮   ╭───────┬───────┬───────┬───────┬───────┬───────╮
 // │  ---  │  ---  │  ---  │   +   │   *   │  ---  │   │  ---  │   /   │   -   │ ---   │  ---  │  ---  │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┼───────┼───────┤
 // │  ---  │   1   │   2   │   3   │   4   │   5   │   │   6   │   7   │   8   │   9   │   0   │  ---  │
 // ├───────┼───────┼───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┼───────┼───────┤
-// │  ---  │  ---  │  ---  │  ---  │  ---  │  ---  │   │  ---  │   =   │  ---  │  ---  │  ---  │  ---  │
+// │ TO(0) │  ---  │  ---  │  ---  │  ---  │  ---  │   │  ---  │   =   │  ---  │  ---  │  ---  │ TO(0) │
 // ╰───────┴───────┴───────┼───────┼───────┼───────┤   ├───────┼───────┼───────┼───────┴───────┴───────╯
-//                         │ TO(0) │  ---  │  ---  │   │  ---  │  ---  │  ---  │
+//                         │ TO(0) │  ---  │  ---  │   │  ---  │  ---  │ TO(0) │
 //                         ╰───────┴───────┴───────╯   ╰───────┴───────┴───────╯
   [8] = LAYOUT(
     KC_TRNS, KC_TRNS, KC_TRNS, KC_PLUS, KC_ASTR, KC_TRNS,    KC_TRNS, KC_SLASH, KC_MINUS, KC_TRNS, KC_TRNS, KC_TRNS,
     KC_TRNS, KC_1, KC_2, KC_3, KC_4, KC_5,                   KC_6, KC_7, KC_8, KC_9, KC_0, KC_TRNS,
-    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_EQUAL, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-    TO(0), KC_TRNS, KC_TRNS,                                 KC_TRNS, KC_TRNS, KC_TRNS
+    TO(0), KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,      KC_TRNS, KC_EQUAL, KC_TRNS, KC_TRNS, KC_TRNS, TO(0),
+    TO(0), KC_TRNS, KC_TRNS,                                 KC_TRNS, KC_TRNS, TO(0)
   ),
 };
 
@@ -150,22 +153,32 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case ST_MACRO_0:
     if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_EQUAL) SS_DELAY(100) SS_LSFT(SS_TAP(X_DOT)));
+      SEND_STRING("=>");
     }
     break;
     case ST_MACRO_1:
     if (record->event.pressed) {
-      SEND_STRING(SS_TAP(X_MINUS) SS_DELAY(100) SS_LSFT(SS_TAP(X_DOT)));
+      SEND_STRING("->");
     }
     break;
     case ST_MACRO_2:
     if (record->event.pressed) {
-      SEND_STRING(SS_LSFT(SS_TAP(X_QUOTE)) SS_DELAY(100) SS_TAP(X_KP_PLUS) SS_DELAY(100) SS_TAP(X_Y));
+      SEND_STRING("\"+y");
     }
     break;
     case ST_MACRO_3:
     if (record->event.pressed) {
-      SEND_STRING(SS_RSFT(SS_TAP(X_QUOTE)) SS_DELAY(100) SS_TAP(X_KP_PLUS) SS_DELAY(100) SS_TAP(X_P));
+      SEND_STRING("\"+p");
+    }
+    break;
+    case PREV_DIFF:
+    if (record->event.pressed) {
+      SEND_STRING("[c");
+    }
+    break;
+    case NEXT_DIFF:
+    if (record->event.pressed) {
+      SEND_STRING("]c");
     }
     break;
   }
