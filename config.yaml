@@ -132,7 +132,7 @@ pcbs:
         where:
           ref: matrix_inner_center
           shift: [-37, 6]
-      rp2024_elite:
+      rp2040_elite:
         what: elite
         params:
           # GND:
