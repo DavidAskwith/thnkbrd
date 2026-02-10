@@ -1,0 +1,257 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.shortcut-hint {
+    text-align: center;
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.layer-selector {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.layer-btn {
+    padding: 10px 15px;
+    border: 2px solid #667eea;
+    background: transparent;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.key-shortcut {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background: rgba(102, 126, 234, 0.5);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.layer-btn:hover {
+    background: rgba(102, 126, 234, 0.2);
+}
+
+.layer-btn.active {
+    background: #667eea;
+    color: #fff;
+}
+
+.keyboard {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.keyboard-half {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+}
+
+.keyboard-gap {
+    width: 40px;
+}
+
+.row {
+    display: flex;
+    gap: 6px;
+    justify-content: flex-start;
+}
+
+.right-half .row {
+    justify-content: flex-end;
+}
+
+.thumb-row {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.key {
+    width: 62px;
+    height: 62px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    border: 2px solid transparent;
+}
+
+.key:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.key.base {
+    background: linear-gradient(145deg, #3a3a5c, #2a2a4c);
+    color: #fff;
+}
+
+.key.layer {
+    background: linear-gradient(145deg, #667eea, #5a6fd6);
+    color: #fff;
+}
+
+.key.mod {
+    background: linear-gradient(145deg, #f093fb, #f5576c);
+    color: #fff;
+}
+
+.key.macro {
+    background: linear-gradient(145deg, #4facfe, #00f2fe);
+    color: #fff;
+}
+
+.key.trans {
+    background: rgba(255, 255, 255, 0.1);
+    color: #666;
+}
+
+.key .primary {
+    font-size: 0.9rem;
+}
+
+.key .secondary {
+    font-size: 0.65rem;
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
+.key.thumb {
+    width: 72px;
+}
+
+.legend {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.legend h3 {
+    margin-bottom: 15px;
+    color: #667eea;
+}
+
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.key-type {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.key-type.base {
+    background: linear-gradient(145deg, #3a3a5c, #2a2a4c);
+}
+
+.key-type.layer {
+    background: linear-gradient(145deg, #667eea, #5a6fd6);
+}
+
+.key-type.mod {
+    background: linear-gradient(145deg, #f093fb, #f5576c);
+}
+
+.key-type.macro {
+    background: linear-gradient(145deg, #4facfe, #00f2fe);
+}
+
+.key-type.trans {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+    .keyboard {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .keyboard-gap {
+        width: 100%;
+        height: 20px;
+    }
+
+    .key {
+        width: 50px;
+        height: 50px;
+        font-size: 0.8rem;
+    }
+
+    .layer-btn {
+        padding: 8px 12px;
+        font-size: 0.75rem;
+    }
+}
+
+.layer-indicator {
+    margin: 0 auto;
+    width: fit-content;
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background: rgba(102, 126, 234, 0.2);
+    border-radius: 8px;
+}

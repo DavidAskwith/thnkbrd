@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QMK Keymap Viewer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="shortcut-hint">Press 1-8 to switch layers</div>
+        <div class="layer-selector">
+            <button class="layer-btn active" data-layer="0"><span class="key-shortcut">1</span>Base Layer</button>
+            <button class="layer-btn" data-layer="1"><span class="key-shortcut">2</span>Symbols L</button>
+            <button class="layer-btn" data-layer="2"><span class="key-shortcut">3</span>Symbols R</button>
+            <button class="layer-btn" data-layer="3"><span class="key-shortcut">4</span>Numbers L</button>
+            <button class="layer-btn" data-layer="4"><span class="key-shortcut">5</span>Numbers R</button>
+            <button class="layer-btn" data-layer="5"><span class="key-shortcut">6</span>Utils L</button>
+            <button class="layer-btn" data-layer="6"><span class="key-shortcut">7</span>Utils R</button>
+            <button class="layer-btn" data-layer="8"><span class="key-shortcut">8</span>Numpad</button>
+        </div>
+
+        <div id="keyboard-container">
+            <div class="keyboard">
+                <div class="keyboard-half left-half">
+                    <div class="row" id="left-row-0"></div>
+                    <div class="row" id="left-row-1"></div>
+                    <div class="row" id="left-row-2"></div>
+                    <div class="thumb-row" id="left-thumb"></div>
+                </div>
+                <div class="keyboard-gap"></div>
+                <div class="keyboard-half right-half">
+                    <div class="row" id="right-row-0"></div>
+                    <div class="row" id="right-row-1"></div>
+                    <div class="row" id="right-row-2"></div>
+                    <div class="thumb-row" id="right-thumb"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <h3>Key Legend</h3>
+            <div class="legend-items">
+                <div class="legend-item"><span class="key-type base"></span> Regular</div>
+                <div class="legend-item"><span class="key-type layer"></span> Layer</div>
+                <div class="legend-item"><span class="key-type mod"></span> Modifier</div>
+                <div class="legend-item"><span class="key-type macro"></span> Macro</div>
+                <div class="legend-item"><span class="key-type trans"></span> Transparent</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="keymap-data.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
