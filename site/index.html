@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QMK Keymap Viewer</title>
+    <title>QMK Keymap Visualizer - Real-time Key Press</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <div class="shortcut-hint">Press 1-8 to switch layers</div>
+        <div class="shortcut-hint">Press 1-8 to switch layers | Type to see key highlights</div>
         <div class="layer-selector">
             <button class="layer-btn active" data-layer="0"><span class="key-shortcut">1</span>Base Layer</button>
             <button class="layer-btn" data-layer="1"><span class="key-shortcut">2</span>Symbols L</button>
@@ -50,7 +50,15 @@
         </div>
     </div>
 
+    <!-- Key status display -->
+    <div id="key-status">
+        <div class="key-info idle">
+            <span class="key-display">Press any key...</span>
+        </div>
+    </div>
+
     <script src="keymap-data.js"></script>
+    <script src="keycode-mapper.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
